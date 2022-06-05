@@ -2,7 +2,7 @@ from cgitb import text
 from app import db
 from datetime import datetime
 
-class Docs(db.Model):
+class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     rubrics = db.Column(db.Text())
     text = db.Column(db.Text())
