@@ -7,11 +7,11 @@
             <tr valign="top">
                 <td>
                     <font size="1" color="black" face="Roboto">
-                    {% for doc in result %}
-                    <h1>Id: {{ doc.id }}</h1>
-                    <h1>Rubrics: {{ doc.rubrics }}</h1>
-                    <h1>Text: {{ doc.text }}</h1>
-                    <h1>Created_date: {{ doc.created_date }}</h1>
+                    {% for res in result %}
+                    <h1>Id: {{ res.id }}</h1>
+                    <h1>Rubrics: {{ res.rubrics }}</h1>
+                    <h1>Text: {{ res.text }}</h1>
+                    <h1>Created_date: {{ res.created_date }}</h1>
                     {% endfor %}
                     </font>
                 </td>

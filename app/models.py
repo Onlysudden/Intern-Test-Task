@@ -4,6 +4,7 @@ from app import db
 from datetime import datetime
 
 class Docs(db.Model):
+    __searchable__ = ['text']
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.Text())
     created_date = db.Column(db.DateTime)
