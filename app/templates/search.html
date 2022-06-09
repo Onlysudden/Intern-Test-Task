@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>RESULT</title>
+    </head>
+    <body>
+        <table>
+            <tr valign="top">
+                <td>
+                    <font size="1" color="black" face="Roboto">
+                    {% for res in result %}
+                    <h1>Id: {{ res.id }}</h1>
+                    <h1>Rubrics: {{ res.rubrics }}</h1>
+                    <h1>Text: {{ res.text }}</h1>
+                    <h1>Created_date: {{ res.created_date }}</h1>
+                    {% endfor %}
+                    </font>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

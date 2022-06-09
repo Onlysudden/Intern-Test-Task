@@ -12,9 +12,21 @@ def remove_from_index(index, model):
 def query_index(index, text):
     search = es.search(
         index=index,
+        size=20,
         query = {'multi_match': {'query': text, 'fields': ['*']}})
     ids = [int(hit['_id']) for hit in search['hits']['hits']]
     return ids
+
+def query_index_by_id(index, id):
+    result = es.search(index=index, body={
+        "size": 1,
+        "query": {
+            "match": {
+                'id': id
+            }
+        }
+    })["hits"]["hits"]
+    return result
 
 
 
