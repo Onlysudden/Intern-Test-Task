@@ -1,14 +1,26 @@
-from cgitb import text
-from unicodedata import name
 from app import db
 from datetime import datetime
+from ast import literal_eval
+
+DATETIME_PATTERN = r"%Y-%m-%d %H:%M:%S"
 
 class Docs(db.Model):
     __searchable__ = ['text']
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.Text())
     created_date = db.Column(db.DateTime)
-    rubrics = db.Column(db.Text())
+    rubrics = db.Column(db.String())
 
-    def __repr__(self):
-        return '<Docs {} {} {} {}>'.format(self.id, self.rubrics, self.text, self.created_date)
+    def __init__(self, id: int, text: str, raw_created_date: str, rubrics: str):
+        self.id = id
+        self.text = text
+        self.created_date = datetime.strptime(raw_created_date, DATETIME_PATTERN)
+        self.rubrics = rubrics
+
+    def as_dict(self):
+        return {
+            "id": self.id,
+            "text": self.text,
+            "created_date": self.created_date.strftime(DATETIME_PATTERN),
+            "rubrics": self.rubrics,
+        }
