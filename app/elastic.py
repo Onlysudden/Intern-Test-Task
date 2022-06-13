@@ -34,6 +34,7 @@ def add_to_index(index, model):
     es.index(index=index, id=model.id, body=payload)
 
 # Импортировал данные в Индекс Эластика используя add_to_index через cmd.
+# Обязательно проверьте запущен ли Elasticsearch через cmd или как сервис!
 # Полный код импорта:
 # from app.models import Docs
 # from app.search import add_to_index

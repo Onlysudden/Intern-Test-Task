@@ -23,3 +23,7 @@ class Docs(db.Model):
             "created_date": self.created_date.strftime(DATETIME_PATTERN),
             "rubrics": self.rubrics,
         }
+
+# Создавал базу данных через миграции flask db migrate и flask db upgrade.
+# После используя программу "DB Browser for SQLite" удалял индекс и импортировал
+# csv файл. После возвращал id в этой же программе.
