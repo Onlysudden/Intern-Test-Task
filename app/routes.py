@@ -1,24 +1,19 @@
-from app import app, es, db
-from flask import render_template, request
+from app import app, loop
+from flask import request
 from app.models import Docs
-from app.search import query_index, query_index_by_id
+from app.tasks import search, delete
 
 @app.get('/search/')
 def get_posts():
     text = request.args["text"]
-    if text is None:
-        return "Text is None"
-    ids = query_index('docs', text)
-    result = Docs.query.filter(Docs.id.in_(ids)).order_by(Docs.created_date.desc()).all()
-    return {"result": [post.as_dict() for post in result]}
+    result = loop.run_until_complete(search(Docs, text))
+    #result = search(Docs, text)
+    return result
 
 @app.delete('/delete/')
 def delete_post():
     id = request.args["id"]
-    if query_index_by_id('docs', id) is not None:
-        elastic = es.delete(index='docs', id=id)
-        sqlite = Docs.query.filter(Docs.id==id).delete()
-        db.session.commit()
-        return {'result':{'sqlite':str(sqlite),'elastic':str(elastic)}}
-    return render_template('error.html')
+    result = loop.run_until_complete(delete(Docs, id))
+    #result = delete(Docs, id)
+    return {'result': result}
 

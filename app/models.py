@@ -1,6 +1,5 @@
 from app import db
 from datetime import datetime
-from ast import literal_eval
 
 DATETIME_PATTERN = r"%Y-%m-%d %H:%M:%S"
 
