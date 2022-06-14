@@ -3,6 +3,7 @@
 
 # My files
 env_activate.bat
+/migrations
 
 ### Python ###
 # Byte-compiled / optimized / DLL files

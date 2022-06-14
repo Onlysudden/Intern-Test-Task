@@ -13,5 +13,5 @@ def get_posts():
 def delete_post():
     id = request.args["id"]
     result = loop.run_until_complete(delete(Docs, id))
-    return {'result': result}
+    return result
 

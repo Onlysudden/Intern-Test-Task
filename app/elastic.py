@@ -17,14 +17,11 @@ def query_index_by_text(index, text):
     return ids
 
 def query_index_by_id(index, id):
-    result = es.search(index=index, body={
-        "size": 1,
-        "query": {
+    result = es.search(index=index, size=1, query={
             "match": {
                 'id': id
             }
-        }
-    })["hits"]["hits"]
+        })["hits"]["hits"]
     return result
 
 def add_to_index(index, model):
@@ -35,8 +32,12 @@ def add_to_index(index, model):
 
 # Импортировал данные в Индекс Эластика используя add_to_index через cmd.
 # Обязательно проверьте запущен ли Elasticsearch через cmd или как сервис!
-# Полный код импорта:
+# Полный код импорта через интепретатор Python:
 # from app.models import Docs
-# from app.search import add_to_index
+# from app.elastic import add_to_index
 # for post in Docs.query.all():\ 
 #     add_to_index('docs', post)
+#
+# Удалить индекс из эластика:
+# from app import es
+# es.indices.delete(index='docs')
