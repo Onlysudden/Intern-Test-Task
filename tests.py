@@ -8,7 +8,7 @@ class Test1(unittest.TestCase):
         self.app = app.test_client()
     
     def test_true_delete(self):
-        response = self.app.delete("/delete/?id=59").data.decode()
+        response = self.app.delete("/delete/?id=52").data.decode()
         assert response == 'True'
     
     def test_delete_invalid_id(self):
@@ -20,12 +20,12 @@ class Test2(unittest.TestCase):
         self.app = app.test_client()
     
     def test_false_delete(self):
-        response = self.app.delete("/delete/?id=59").data.decode()
+        response = self.app.delete("/delete/?id=52").data.decode()
         assert response == 'Not found post with such id'
     
     def test_get_ids(self):
         response = query_index_by_text('docs', 'святой')
-        assert response == [871, 872]
+        assert response == [547, 871, 872]
 
 class Test3(unittest.TestCase):
     def setUp(self):
@@ -42,10 +42,10 @@ class Test4(unittest.TestCase):
         self.app = app.test_client()
 
     def test_get_ids_after_delete(self):
-        self.app.delete("/delete/?id=871")
-        time.sleep(1)
+        self.app.delete("/delete/?id=547")
+        time.sleep(2)
         response = query_index_by_text('docs', 'святой')
-        assert response == [872]
+        assert response == [871, 872]
 
 if __name__ == '__main__':
     unittest.main()

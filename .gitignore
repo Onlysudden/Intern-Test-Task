@@ -4,6 +4,7 @@
 # My files
 env_activate.bat
 /migrations
+origin.db
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
