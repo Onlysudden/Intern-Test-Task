@@ -1,7 +1,7 @@
 import unittest, time
 
-from app import app
-from app.elastic import query_index_by_text
+import app
+from elastic import query_index_by_text
 
 class Test1(unittest.TestCase):
     def setUp(self):
