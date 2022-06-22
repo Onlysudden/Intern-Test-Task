@@ -68,21 +68,25 @@
 
 ```
 .
-|-- Dockerfile
-|-- README.md
 |-- app
 |   |-- __init__.py         - "Главный" модуль приложения
 |   |-- elastic.py          - Функции для работы с Elasticsearch
 |   |-- models.py           - Класс для работы с БД
 |   |-- routes.py           - Модуль с обработкой запросов
 |   |-- tasks.py            - Основная часть кода обработки запросов
-|   |-- tests.py            - Юнит-тесты
+|   `-- tests.py            - Юнит-тесты
+|-- .gitignore
+|-- Dockerfile
+|-- README.md
 |-- app.db                  - БД, созданная из .csv файла
 |-- boot.sh                 - Скрипт для запуска сервиса внутри контейнера
+|-- config.py               - Конфигурационный файл
+|-- docker-setup.sh         - Скрипт для сборки и запуска контейнера
+|-- docker-stop.sh          - Скрипт для остановки контейнера
 |-- docs.json               - Документация в формате OpenAPI
-|-- server.py
 |-- requirements.txt        - Зависимости
-`-- docker-setup.sh         - Скрипт для сборки и запуска контейнера
+|-- server.py
+|-- test_data.csv           - Тестовые данные
 ```
 
 ### Методы API
