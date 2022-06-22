@@ -3,10 +3,6 @@ from flask import request
 from app.models import Docs
 from app.tasks import search, delete
 
-@app.route('/index')
-def index():
-    return "Hello i'm work!"
-
 @app.get('/search/')
 def get_posts():
     text = request.args["text"]

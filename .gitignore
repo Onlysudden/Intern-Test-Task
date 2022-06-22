@@ -4,9 +4,6 @@
 # My files
 env_activate.bat
 /migrations
-origin.db
-posts.csv
-elastic.txt
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
