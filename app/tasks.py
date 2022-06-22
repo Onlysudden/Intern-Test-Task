@@ -1,7 +1,10 @@
-from app import db
-from app.elastic import delete_by_id, query_index_by_text, query_index_by_id
+from app import db, es
+from app.elastic import delete_by_id, query_index_by_text, query_index_by_id, add_to_index
 
 async def search(Model, text):
+    if not es.indices.exists(index='docs'):
+        for post in Model.query.all():
+            add_to_index('docs', post)
     if text is None:
         return "Text is None"
     try:
@@ -12,6 +15,9 @@ async def search(Model, text):
         return str(exc)
 
 async def delete(Model, id):
+    if not es.indices.exists(index='docs'):
+        for post in Model.query.all():
+            add_to_index('docs', post)
     delete_item = query_index_by_id('docs', id)
     if delete_item is not None:
         elastic_result = delete_by_id('docs', id)
@@ -21,3 +27,10 @@ async def delete(Model, id):
             return str(db_result)
         return "Not found post with such id"
     return "Not found post with such id"
+
+ #       if e.indices.exists(INDEX):
+ #       e.indices.delete(index=INDEX)
+ #   e.indices.create(index=INDEX)
+
+    # for post in Docs.query.all():\ 
+#     add_to_index('docs', post)

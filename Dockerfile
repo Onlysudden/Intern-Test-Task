@@ -1,6 +1,8 @@
-FROM python:3.10
+FROM python:3.10.0-alpine
 
-WORKDIR /home/test
+RUN adduser -D sudden
+
+WORKDIR /home/sudden
 
 COPY requirements.txt requirements.txt
 RUN python -m venv venv
@@ -8,15 +10,13 @@ RUN venv/bin/pip install -r requirements.txt
 RUN venv/bin/pip install gunicorn
 
 COPY app app
-COPY server.py .
-COPY config.py .
-COPY app.db .
-COPY boot.sh ./
+COPY server.py config.py app.db boot.sh ./
 RUN chmod +x boot.sh
 
-ENV APPLICATION_PORT=5000
+ENV FLASK_APP server.py
 
-EXPOSE ${APPLICATION_PORT}
+RUN chown -R sudden:sudden ./
+USER sudden
+
+EXPOSE 5000
 ENTRYPOINT ["./boot.sh"]
-#set FLASK_APP=server.py
-#flask run
