@@ -2,8 +2,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,visual
 
 # My files
-env_activate.bat
 /migrations
+env_elastic.bat
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
